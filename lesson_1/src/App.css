@@ -3,7 +3,7 @@
     margin: 0 auto;
     margin-top: 50px;
 }
-.tbl td {
+.tbl td, .tbl th {
     padding: 5px;
 }
 .tbl-caption {
