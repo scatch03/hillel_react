@@ -1,0 +1,17 @@
+.tbl {
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.tbl td {
+    padding: 5px;
+}
+.tbl-caption {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+.category {
+    font-size: 18px;
+    font-weight: 600;
+}
