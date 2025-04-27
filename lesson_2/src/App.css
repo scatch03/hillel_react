@@ -1,0 +1,16 @@
+.tbl {
+  margin: 50px auto;
+  font-size: 22px;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+.tbl td {
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.tbl td.active {
+  font-weight: bold;
+  color: #f00;
+}
