@@ -20,10 +20,10 @@ const UsersList = () => {
     const handleUpdate = async (user, update) => {
         const success = await updateUser(user.id, update);
         if (success) {
-            setUsers(prevUsers => prevUsers.map(u => u.id !== user.id ? u : {...u, ...update}))
+            setUsers(prevUsers => prevUsers.map(usr => usr.id !== user.id ? usr : {...usr, ...update}))
         }
     }
-    const handleNameChange = (user) => (evt) => setUsers(prevUsers => prevUsers.map(u => u.id === user.id ? {...u, name: evt.target.value} : u))
+    const handleNameChange = (user) => (evt) => setUsers(prevUsers => prevUsers.map(usr => usr.id === user.id ? {...usr, name: evt.target.value} : usr))
 
     return (
         <div>
@@ -36,11 +36,11 @@ const UsersList = () => {
                                 <table>
                                     <tbody>
                                         {
-                                            Object.entries(user).map(([k, v]) => {
-                                                    return (<tr key={`${user.id}-${k}`}>
-                                                                <td className="key">{k}</td>
+                                            Object.entries(user).map(([key, value]) => {
+                                                    return (<tr key={`${user.id}-${key}`}>
+                                                                <td className="key">{key}</td>
                                                                 <td>
-                                                                    {k === `name` ? <input onChange={handleNameChange(user)} type="text" value={user.name} /> : v}
+                                                                    {key === `name` ? <input onChange={handleNameChange(user)} type="text" value={user.name} /> : value}
                                                                 </td>
                                                             </tr>)
                                                 })
