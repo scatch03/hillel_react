@@ -14,7 +14,7 @@ const UsersList = () => {
     const handleDelete = async (user) => {
         const success = await deleteUser(user.id);
         if (success) {
-            setUsers(prevUsers => prevUsers.filter(u => u.id !== user.id))
+            setUsers(prevUsers => prevUsers.filter(usr => usr.id !== user.id))
         }
     }
     const handleUpdate = async (user, update) => {
