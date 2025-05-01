@@ -23,7 +23,7 @@ const UsersList = () => {
             setUsers(prevUsers => prevUsers.map(u => u.id !== user.id ? u : {...u, ...update}))
         }
     }
-    const handleChange = (user) => (evt) => setUsers(prevUsers => prevUsers.map(u => u.id === user.id ? {...u, name: evt.target.value} : u))
+    const handleNameChange = (user) => (evt) => setUsers(prevUsers => prevUsers.map(u => u.id === user.id ? {...u, name: evt.target.value} : u))
 
     return (
         <div>
@@ -40,8 +40,7 @@ const UsersList = () => {
                                                     return (<tr key={`${user.id}-${k}`}>
                                                                 <td className="key">{k}</td>
                                                                 <td>
-                                                                    {k === `name` ? 
-                                                                       <input onChange={handleChange(user)} type="text" value={user.name} /> : v}
+                                                                    {k === `name` ? <input onChange={handleNameChange(user)} type="text" value={user.name} /> : v}
                                                                 </td>
                                                             </tr>)
                                                 })
