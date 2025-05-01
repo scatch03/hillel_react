@@ -23,6 +23,7 @@ const UsersList = () => {
             setUsers(prevUsers => prevUsers.map(u => u.id !== user.id ? u : {...u, ...update}))
         }
     }
+    const handleChange = (user) => (evt) => setUsers(prevUsers => prevUsers.map(u => u.id === user.id ? {...u, name: evt.target.value} : u))
 
     return (
         <div>
@@ -32,7 +33,7 @@ const UsersList = () => {
                          .map(user => pairsToObj(user))
                          .map(user => 
                             <div className="user-card" key={user.id}>
-                                <table key={user.id}>
+                                <table>
                                     <tbody>
                                         {
                                             Object.entries(user).map(([k, v]) => {
@@ -40,7 +41,7 @@ const UsersList = () => {
                                                                 <td className="key">{k}</td>
                                                                 <td>
                                                                     {k === `name` ? 
-                                                                       <input onChange={(e) => setUsers(prevUsers => prevUsers.map(u => u.id === user.id ? {...u, name: e.target.value} : u)) } type="text" value={user.name} /> : v}
+                                                                       <input onChange={handleChange(user)} type="text" value={user.name} /> : v}
                                                                 </td>
                                                             </tr>)
                                                 })
