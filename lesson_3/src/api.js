@@ -22,7 +22,7 @@ const updateUser = async (userId, update) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify(update)
+            body: JSON.stringify(update)
         })
         if (!updateUserResp.ok) {
             const errorData = await updateUserResp.json()
