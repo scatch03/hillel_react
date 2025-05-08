@@ -29,11 +29,11 @@ button {
     margin-left: 5px;
 }
 
-.user-form, .color-picker {
+.user-form, .color-picker, .order-by {
     margin: 50px auto;
     max-width: 600px;
 }
 
-.user-form > *, .color-picker > * {
+.user-form > *, .color-picker > *, .order-by > * {
     margin: 5px;
 }

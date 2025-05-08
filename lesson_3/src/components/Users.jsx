@@ -1,20 +1,39 @@
 import { useState, useEffect, useCallback } from "react"
 import { deleteUser, getUsers, updateUser } from "../services/userService"
-import { deepEntries, pairsToObj } from "../utils/util"
+import { equalById, deepEntries, pairsToObj } from "../utils/util"
 import UserForm from "./UserForm"
 import UserTable from "./UserTable"
 import Button from "./Button"
 import ColorPicker from "./ColorPicker"
+import OrderBy from "./OrderBy"
 
 
 const Users = () => {
     const [users, setUsers] = useState([])
     const [tableColor, setTableColor] = useState(`#000`)
+    const [tableOrdering, setTableOrdering] = useState(`id`)
 
     useEffect(() => {
         getUsers()
         .then(userList => setUsers(userList))
     }, [])
+    useEffect(() => {
+        setUsers(prevUsers => {
+            const prevUsersClone = [...prevUsers]
+            prevUsers.sort((a, b) => {
+                const valA = a[tableOrdering];
+                const valB = b[tableOrdering];
+                if (typeof valA === "string" && typeof valB === "string") {
+                    return valA.localeCompare(valB);
+                }
+                return valA > valB ? 1 : valA < valB ? -1 : 0;
+            })
+            if (equalById(prevUsersClone, prevUsers)){
+                return prevUsers
+            }
+            return [...prevUsers]
+        })
+    }, [tableOrdering, users])
 
     const handleDelete = useCallback(async (user) => {
         const success = await deleteUser(user.id);
@@ -36,6 +55,7 @@ const Users = () => {
         <>
             <UserForm setUsers={setUsers} />
             <ColorPicker onColorChange={setTableColor} />
+            <OrderBy onSelect={setTableOrdering} />
             <div>
                 {
                     Array.isArray(users) && users.length ? 
