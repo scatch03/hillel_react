@@ -26,6 +26,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin-left: 5px;
 }
 
 .user-form, .color-picker {

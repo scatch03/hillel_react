@@ -1,8 +1,8 @@
 import UserTableRow from "./UserTableRow"
 
-const UserTable = ({user, handleNameChange, caption=``}) => {
+const UserTable = ({user, handleNameChange, color=`#000`, caption=``}) => {
     return (
-        <table className="user-card">
+        <table className="user-card" style={{color}}>
             {caption && <caption>{caption}</caption>}
             <tbody>
             {
@@ -11,6 +11,7 @@ const UserTable = ({user, handleNameChange, caption=``}) => {
                         <UserTableRow key={`${user.id}-${key}`} 
                                       user={user} 
                                       rowKey={key} 
+                                      color={color}
                                       handleNameChange={handleNameChange} />
                     )
                 })

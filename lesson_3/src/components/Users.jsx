@@ -9,6 +9,7 @@ import ColorPicker from "./ColorPicker"
 
 const Users = () => {
     const [users, setUsers] = useState([])
+    const [tableColor, setTableColor] = useState(`#000`)
 
     useEffect(() => {
         getUsers()
@@ -34,7 +35,7 @@ const Users = () => {
     return (
         <>
             <UserForm setUsers={setUsers} />
-            <ColorPicker />
+            <ColorPicker onColorChange={setTableColor} />
             <div>
                 {
                     Array.isArray(users) && users.length ? 
@@ -42,7 +43,7 @@ const Users = () => {
                              .map(user => pairsToObj(user))
                              .map(user => 
                                 <div className="user-data" key={user.id}>
-                                    <UserTable user={user} handleNameChange={handleNameChange} />
+                                    <UserTable color={tableColor} user={user} handleNameChange={handleNameChange} />
                                     <div className="actions">
                                         <Button text="Delete" onClick={() => handleDelete(user)} />
                                         <Button text="Update" onClick={() => handleUpdate(user, {name: user.name})} />
