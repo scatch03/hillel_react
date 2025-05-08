@@ -6,17 +6,31 @@ import UserTable from "./UserTable"
 import Button from "./Button"
 import ColorPicker from "./ColorPicker"
 import OrderBy from "./OrderBy"
+import Filter from "./Filter"
 
 
 const Users = () => {
     const [users, setUsers] = useState([])
     const [tableColor, setTableColor] = useState(`#000`)
     const [tableOrdering, setTableOrdering] = useState(`id`)
+    const [tableFilter, setTableFilter] = useState(``)
+    const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
-        getUsers()
-        .then(userList => setUsers(userList))
+        getUsers().then(userList => setUsers(userList))
     }, [])
+    useEffect(() => {
+        setFilteredUsers(prevFilteredUsers => {
+            const filteredUsers = users.filter(user => 
+                !tableFilter || 
+                (user.name && user.name.includes(tableFilter)) || 
+                (user.username && user.username.includes(tableFilter)))
+            if (equalById(prevFilteredUsers, filteredUsers)){
+                return prevFilteredUsers
+            }
+            return [...filteredUsers]
+        })
+    }, [users, tableFilter])
     useEffect(() => {
         setUsers(prevUsers => {
             const prevUsersClone = [...prevUsers]
@@ -56,10 +70,11 @@ const Users = () => {
             <UserForm setUsers={setUsers} />
             <ColorPicker onColorChange={setTableColor} />
             <OrderBy onSelect={setTableOrdering} />
+            <Filter onChange={setTableFilter} />
             <div>
                 {
-                    Array.isArray(users) && users.length ? 
-                        users.map(user => deepEntries(user))
+                    Array.isArray(filteredUsers) && filteredUsers.length ? 
+                        filteredUsers.map(user => deepEntries(user))
                              .map(user => pairsToObj(user))
                              .map(user => 
                                 <div className="user-data" key={user.id}>
