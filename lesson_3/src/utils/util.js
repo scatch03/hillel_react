@@ -8,6 +8,7 @@ const arrayByTwo = (arr) => {
         (_, i) => arr.slice(2 * i, 2 * (i + 1))
     )
 }
+
 const pairsToObj = (pairs) => {
     if (!Array.isArray(pairs)) {
       return {};
