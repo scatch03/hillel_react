@@ -1,0 +1,12 @@
+.add-todo {
+    border: 1px dotted #000;
+    margin: 50px auto;
+    max-width: 350px;
+
+    &__text, &__status, &__submit {
+        padding: 5px;
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+

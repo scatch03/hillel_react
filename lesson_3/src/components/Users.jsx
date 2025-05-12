@@ -47,7 +47,7 @@ const Users = () => {
             }
             return [...prevUsers]
         })
-    }, [tableOrdering, users])
+    }, [users, tableOrdering])
 
     const handleDelete = useCallback(async (user) => {
         const success = await deleteUser(user.id);
@@ -74,7 +74,8 @@ const Users = () => {
             <div>
                 {
                     Array.isArray(filteredUsers) && filteredUsers.length ? 
-                        filteredUsers.map(user => deepEntries(user))
+                        filteredUsers
+                             .map(user => deepEntries(user))
                              .map(user => pairsToObj(user))
                              .map(user => 
                                 <div className="user-data" key={user.id}>

@@ -1,0 +1,12 @@
+.todo-panel {
+    width: 100%;
+    max-width: 1600px;
+    min-width: 300px;
+    margin: 15px auto;
+    padding: 15px 10px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: space-around;
+    gap: 25px;
+    flex-wrap: wrap;
+}
