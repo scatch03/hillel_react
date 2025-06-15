@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+}
+nav a.active {
+    color: rgb(30, 126, 3);
+}
