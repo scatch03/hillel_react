@@ -1,4 +1,4 @@
-export default function ErrorRouter() {
+export default function ErrorRoute() {
     return (
         <>
             Shit Happens :/
