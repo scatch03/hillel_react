@@ -1,1 +1,1 @@
-# hillel_react
+# hillel_react course
